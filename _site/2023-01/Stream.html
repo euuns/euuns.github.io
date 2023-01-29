@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+
+
+<head>
+  <title>[Java/자바] 입출력을 위한 스트림(Stream) | Catbook</title>
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="author" content="suns">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/assets/css/main.css" media="all">
+  <link rel="canonical" href="http://localhost:4000/2023-01/Stream">
+  <link rel="alternate" type="application/rss+xml" title="Catbook"
+    href="/feed.xml" />
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon" />
+
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,400i" rel="stylesheet">
+</head>
+
+<body>
+  <div class="content">
+
+    <header class="header">
+
+  <div class="header_content">
+    <label class="theme_changer">
+      <input theme_toggle type="checkbox">
+      <div class="button"></div>
+    </label>
+    <a class="header_circle" href="/">
+      <img src="/assets/img/pngfile.png" alt="">
+    </a>
+    <span class="header_name">suns</span>
+    <span class="header_job">student</span>
+    <span class="header_mes"></span>
+
+    <nav class="nav">
+      
+      <ul class="nav_list">
+        <li class="nav_item">
+          <a href="/aboutme.html">about</a>
+        </li>
+      </ul>
+      
+      
+      
+      <ul class="nav_list">
+        <li class="nav_item">
+          <a href="/categories/JAVA" id="aa">JAVA
+            (1)</a>
+        </li>
+      </ul>
+      
+    </nav>
+  </div>
+
+</header>
+
+
+
+    <nav class="mobile_menu">
+
+  <ul class="nav_list">
+    
+    <li class="nav_item">
+      <a href="/aboutme.html">about</a>
+    </li>
+
+    
+    
+    
+
+    <li class="nav_item">
+      <a href="/categories/JAVA" id="aa">JAVA (1)</a>
+    </li>
+    
+  </ul>
+
+</nav>
+    
+    <main class="main">
+
+    <div class="post">
+  <div>
+    
+    <p class="post_title">[Java/자바] 입출력을 위한 스트림(Stream)</p>
+    
+  </div>
+  <div class="post_data">
+    
+    <span class="post_date">Jan 29, 2023</span>
+    
+    
+    <span class="post_categories">
+      &raquo; 
+      <a href="/categories/JAVA">JAVA</a>
+    </span>
+    
+  </div>
+  <div class="post_content">
+    <h1 id="stream">Stream</h1>
+<p><code class="language-plaintext highlighter-rouge">데이터를 전달하기 위해 사용되는 연결통로</code><br /><br /></p>
+
+<p>입력과 출력을 I/O (Input/Output) 라고 부른다. 그래서 각 언어마다 입출력을 위한 라이브러리에는 io 라는 단어가 사용된다. c언어의 stdio.h 와 java의 java.io 가 예시이다. 사용자가 데이터를 입력하면 이 데이터를 전송하여 출력을 하는데, 이 사이에서 매개체로 이루어지는 것이 스트림이다. <br /><br />
+스트림은 단방향 통신만 가능해 입력과 출력을 동시에 진행할 수 없다. 동시에 하기 위해 입력스트림과 출력스트림 2개가 필요하다. 스트림은 먼저 보낸 데이터를 우선으로 연속적으로 데이터를 주고 받는다. 선입선출(First in First Out : FIFO)의 큐(Queue)와 같은 구조로 이루어졌다.<br /><br /></p>
+
+<hr />
+<p><br /><br />
+스트림은 바이트 기반으로 이루어져있다. 바이트 기반으로 이루어졌다는 건 데이터 입출력 단위가 1byte 라는 것이다. 입출력을 진행하는 대상의 종류에 따라서 스트림을 골라 사용할 수 있으며 모두 InputStream과 OutputStream을 기반으로 하는 자식이다. <br /><br />
+<br />
+c언어에서 char는 1byte의 크기를 가지고 있다. 하지만 자바에서 char는 2byte 크기를 가지고 있어, 1byte로 입출력이 진행되는 바이트기반 스트림으로 문자를 처리할 수 없다. 이를 위해 문자기반 스트림이 제공된다.<br /><br /><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">InputStream → Reader</code><br />
+<code class="language-plaintext highlighter-rouge">OutputStream → Writer</code><br />
+<br /><br />
+입력스트림은 Reader로, 출력스트림은 Writer로 사용된다. 각 대상별로 사용할 수 있는 바이트기반 스트림과 문자기반 스트림은 아래 표와 같다.<br /><br />
+<img src="../../assets/img/Java/stream.png" alt="image" />StringBufferInputStream/OutputStream은 더 이상 사용 되지 않는다.<br /><br /><br />
+각 대상을 의미하는 이름 뒤에 스트림만 바꿔주면 된다. 바이트배열인 ByteArray 이름만 CharArray로 바꿔주면 모두 비슷한 이름으로 헷갈리지 않게 쓸 수 있다.
+<br /><br /><br />
+문자 데이터를 다루는데 필요한 또 하나의 정보는 인코딩이다. 여러 종류의 인코딩과 자바에서 사용하는 유니코드 간의 변환을 자동으로 처리해준다. Reader는 특정 인코딩을 읽어 유니코드로 변환, Writer는 유니코드를 특정 인코딩으로 변환하여 저장한다.<br /><br /></p>
+
+<hr />
+<p><br />실제 데이터를 주고 받아 입출력을 시행하지는 않지만, 스트림의 기능을 보완해주는 보조 스트림이 존재한다. 보조 스트림은 자체적으로 입출력을 할 수 없어 기반 스트림을 필요로 한다.<br /><br /></p>
+<h2 id="1-buffered">1. Buffered</h2>
+<h3 id="1-bufferedinputstream--bufferedoutputstream">1) BufferedInputStream / BufferedOutputStream</h3>
+<p>스트림의 입출력 효율을 높이기 위해 사용한다. 버퍼를 이용해 여러 바이트를 입출력하는 것이 더 빠르고 효율적으로 사용할 수 있다. 버퍼는 임시적으로 데이터를 보관하는 임시 메모리로 사용된다.<br /><br /></p>
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>생성자
+<span class="p">-</span> BufferedInputStream(InputStream in, int size), BufferedInputStream(InputStream in)
+<span class="p">-</span> BufferedOutputStream(OutputStream out, int size), BufferedOutputStream(OutputStream out)
+　: 각각 InputStream을 입력소스로, OutputStream을 출력소스로
+　  버퍼의 크기를 지정해주지 않으면 8192byte 크기로 생성된다.
+</code></pre></div></div>
+<p><br />입력소스로 내용을 읽어 내부 버퍼에 저장하고, 버퍼에 저장된 데이터를 읽는다. 다음 버퍼를 읽기 위해 read메서드가 호출되면 다시 버퍼 크기만큼 데이터를 읽어 버퍼에 저장한다. 출력소스는 wirte메서드를 이용한 출력이 버퍼에 저장되고, 버퍼가 가득 차면 출력소스를 출력한다. 버퍼에 데이터가 남아있는 채로 프로그램이 종료되는 것을 방지하여 출력 뒤에는 flush()와 close()를 호출해 버퍼를 깨끗하게 정리해줘야 한다.
+<br />
+write(): 버퍼의 값을 전부 출력한다. / flush(): 남아있는 데이터를 모두 출력한다.
+<br />
+보조 스트림을 사용한 경우 기반 스트림의 close()없이 보조 스트림의 close()만 호출해도 된다.
+<br /><br /><br /></p>
+<h3 id="2-bufferedreader--bufferedwriter">2) BufferedReader / BufferedWriter</h3>
+<p><br />바이트기반과 동일하게 버퍼를 사용해 효율을 높인다. 키보드 입력이 있을 때마다 버퍼로 전달하는 방법보다 버퍼가 차거나 개행 문자 입력 시 버퍼 내용을 프로그램에 한번에 전송해 많은 문자를 입력받을 시 확실히 효율적인 방법이다.<br /><br />
+ButteredReader의 readLine()을 사용해 데이터를 라인단위로 읽고, BufferedWriter는 newLine()을 통해 줄바꿈을 할 수 있다.<br />
+<br />
+해당 스트림은 Enter만 인식하여 문자열로 고정하여 저장한다. 때문에 공백을 기준으로 데이터를 나누거나 형변환을 하고 싶은 경우 데이터 가공이 필요하다. 공백 단위로 나눌 경우 StringTokenizer의 nextToken() 메서드를 통해 분류해 순서대로 호출할 수 있으며, String.split()을 사용할 수도 있다.
+<br /><br /><br /><br /></p>
+<h2 id="2-inputstreamreader--outputstreamwriter">2. InputStreamReader / OutputStreamWriter</h2>
+<p><br />
+바이트기반 스트림을 문자기반 스트림으로 연결해주는 역할을 한다. Reader와 Writer의 특징인 인코딩을 통해 바이트기반 스트림의 데이터를 지정된 인코딩의 문자데이터로 변환할 수 있다. <br /><br /></p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>생성자
+<span class="p">-</span> InputStreamReader(InputStream in) / InputStreamReader(InputStream in, String encoding)
+<span class="p">-</span> OutputStreamWriter(OutputStream out) / OutputStreamWriter(OutputStream out, String encoding)
+　: 인코딩을 지정해주지 않으면 OS에서 사용하는 기본 인코딩 문자로 변환하는 스트림 생성
+</code></pre></div></div>
+<p><br /><br /><br /></p>
+
+<hr />
+<p><br />위 공부한 내용을 바탕으로 백준 15552번을 풀어볼 수 있다.<br /><br />
+<img src="../../assets/img/BOJ/15552_1.png" alt="image" />
+<img src="../../assets/img/BOJ/15552_2.png" alt="image" />
+<br />문제에 대한 설명부터 일반 입출력 연산이 아닌 더 빠른 연산을 사용하라고 설명되어 있다.<br />
+<img src="../../assets/img/BOJ/15552_3.png" alt="image" /><br /><br />
+빠른 A+B는 입출력 단계가 아닌 반복문 단계에 포함되어 있다. 반복문을 이용하여 빠른 입출력을 진행하는 문제다. 입력받은 T만큼 반복하며 자바의 경우 BufferedReader와 BufferedWriter를 이용해 문자를 입력받아 연산 후 출력을 진행한다.</p>
+
+<p>BufferedReader는 버퍼를 이용하는 연산으로 “Enter”만 인식해 “문자”로 저장된다. 입력된 문자를 공백을 기준으로 나누기 위해 StringTokenizer를 이용했다.
+<br /><br /></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.BufferedWriter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.OutputStreamWriter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.StringTokenizer</span><span class="o">;</span>
+</code></pre></div></div>
+<p>간편하게 사용하고 싶으면 java.io.*; 만 해도 되지만, 어느 클래스를 가져왔는지 확실하게 알려주기 위해 직접 작성했다. BufferedReader의 readLine() 사용 시 예외처리가 필요해 IOException을 이용했다.
+<br /><br /></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
+        <span class="nc">BufferedWriter</span> <span class="n">bw</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedWriter</span><span class="o">(</span><span class="k">new</span> <span class="nc">OutputStreamWriter</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">));</span>
+        <span class="kt">int</span> <span class="no">T</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="no">T</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="nc">StringTokenizer</span> <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringTokenizer</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">(),</span><span class="s">" "</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+            <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+            <span class="nc">String</span> <span class="n">sum</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">);</span>
+            <span class="n">bw</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">sum</span><span class="o">+</span><span class="sc">'\n'</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">bw</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
+        <span class="n">bw</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /><br />
+T만큼의 반복을 위해 int형으로 변환하여 반복을 진행했다.<br /><br /></p>
+
+<p>입력받은 문자를 공백을 기준으로 토큰으로 분류하는 StringTokenizer클래스를 인스턴스한다. nextToken()메서드를 이용해 분류된 다음 토큰을 가져와 각 변수에 대입한다. 대입하기 전에 문자를 정수로 형변환을 진행해야 하며, 문자를 출력하는 BufferedWriter를 위해서 두 수의 합을 다시 문자로 변환하여 저장한다.
+<br /><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">두 수의 합을 위해서 정수로 형변환을 진행했고</code><br />
+<code class="language-plaintext highlighter-rouge">문자의 출력을 위해서 문자로 형변환을 진행했다.</code>
+<br /><br /></p>
+
+<p>줄바꿈 문자를 넣어주지 않으면, 버퍼에 입력된 순서대로 출력만 진행이 되어 모든 문자들이 붙어서 출력된다. 이를 위해 제일 마지막에 \n을 함께 넣어주면 예제에 나오는 모습대로 출력이 되는 걸 볼 수 있다.</p>
+
+<p><a href="https://rvrlo.tistory.com/entry/Java%EC%9E%90%EB%B0%94-%EC%9E%85%EC%B6%9C%EB%A0%A5%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%8A%A4%ED%8A%B8%EB%A6%BCStream">Tistory</a></p>
+
+  </div>
+
+
+  
+  <div class="post_comment">
+
+    
+
+    
+
+
+  </div>
+  
+
+</div>
+
+
+    </main>
+
+  </div>
+
+  <footer class="footer">
+  <div>
+    &copy; 2023 suns.
+    Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>.
+    Get this theme
+    <a href="https://github.com/starry99/catbook" target="_blank">here</a>.
+  </div>
+</footer>
+
+  <!-- js from https://codepen.io/MrGrigri/pen/XQmWBv -->
+
+<script>
+// @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&dn=expat.txt Expat
+    const themePreference = () => {
+        const hasLocalStorage = localStorage.getItem('theme');
+        let supports = false;
+        let theme = undefined;
+
+        if (hasLocalStorage === 'light') {
+            theme = 'light';
+        }
+        if (hasLocalStorage === 'dark') {
+            theme = 'dark';
+        }
+
+        if (window.matchMedia(`(prefers_color: dark)`).matches) {
+            theme = hasLocalStorage ? hasLocalStorage : 'dark';
+            supports = true;
+        };
+        if (window.matchMedia(`(prefers_color: light)`).matches) {
+            theme = hasLocalStorage ? hasLocalStorage : 'light';
+            supports = true;
+        };
+        if (window.matchMedia(`(prefers_color: no-preference)`).matches) {
+            theme = hasLocalStorage ? hasLocalStorage : 'none';
+            supports = true;
+        };
+
+        return {
+            supports,
+            theme
+        };
+    }
+
+    document.addEventListener('DOMContentLoaded', e => {
+        console.clear();
+
+        const userThemePreference = themePreference();
+        const toggle = document.querySelector('[theme_toggle]');
+        const html = document.documentElement;
+
+        const setTheme = () => {
+            switch (userThemePreference.theme) {
+                case 'dark':
+                    toggle.checked = true;
+                    html.classList.add('dark');
+                    html.classList.remove('light');
+                    break;
+                case 'light':
+                    toggle.checked = false;
+                    html.classList.remove('dark');
+                    html.classList.add('light');
+                    break;
+            }
+        }
+        setTheme();
+        toggle.addEventListener('click', e => {
+            if (toggle.checked) {
+                html.classList.add('dark');
+                html.classList.remove('light');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            }
+        }, false);
+    }, false);
+// @license-end
+</script>
+
+</body>
+</html>
