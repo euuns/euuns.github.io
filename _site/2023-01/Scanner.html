@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+
+
+<head>
+  <title>[Java/자바] Scanner를 이용해 입력받기 | Suns</title>
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="author" content="suns">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/assets/css/main.css" media="all">
+  <link rel="canonical" href="http://localhost:4000/2023-01/Scanner">
+  <link rel="alternate" type="application/rss+xml" title="Suns"
+    href="/feed.xml" />
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon" />
+
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,400i" rel="stylesheet">
+</head>
+
+<body>
+  <div class="content">
+
+    <header class="header">
+
+  <div class="header_content">
+    <label class="theme_changer">
+      <input theme_toggle type="checkbox">
+      <div class="button"></div>
+    </label>
+    <a class="header_circle" href="/">
+      <img src="/assets/img/pngfile.png" alt="">
+    </a>
+    <span class="header_name">suns</span>
+    <span class="header_job">student</span>
+    <span class="header_mes"></span>
+
+    <nav class="nav">
+      
+      <ul class="nav_list">
+        <li class="nav_item">
+          <a href="/aboutme.html">about</a>
+        </li>
+      </ul>
+      
+      
+      
+      <ul class="nav_list">
+        <li class="nav_item">
+          <a href="/categories/JAVA" id="aa">JAVA
+            (2)</a>
+        </li>
+      </ul>
+      
+    </nav>
+  </div>
+
+</header>
+
+
+
+    <nav class="mobile_menu">
+
+  <ul class="nav_list">
+    
+    <li class="nav_item">
+      <a href="/aboutme.html">about</a>
+    </li>
+
+    
+    
+    
+
+    <li class="nav_item">
+      <a href="/categories/JAVA" id="aa">JAVA (2)</a>
+    </li>
+    
+  </ul>
+
+</nav>
+    
+    <main class="main">
+
+    <div class="post">
+  <div>
+    
+    <p class="post_title">[Java/자바] Scanner를 이용해 입력받기</p>
+    
+  </div>
+  <div class="post_data">
+    
+    <span class="post_date">Jan 29, 2023</span>
+    
+    
+    <span class="post_categories">
+      &raquo; 
+      <a href="/categories/JAVA">JAVA</a>
+    </span>
+    
+  </div>
+  <div class="post_content">
+    <h1 id="scanner">Scanner</h1>
+<p>자바에서는 입력을 받기 위해 Scanner 클래스를 이용할 수 있다.<br /><br /></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+</code></pre></div></div>
+<p>util 패키지 안의 모든 클래스를 사용한다는 util.* 을 가져와도 되고,<br />
+Scanner 클래스를 사용한다고 직접적으로 알려주기 위해 util.Scanner 를 가져와도 된다.<br /><br /></p>
+
+<p>Scanner 클래스의 객체를 생성하고 해당 객체를 사용하여 변수에 값을 입력받을 수 있다.<br /><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+<span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+<span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="c1">//String ageInput = scanner.nextLine();</span>
+<span class="c1">//int age = Integer.parseInt(ageInput);</span>
+</code></pre></div></div>
+
+<p><br /><br />
+scanner 객체를 이용해 name과 age에 각 각 값을 입력하였다.<br />
+nextLine()은 입력대기 상태에서 엔터키를 누르면 입력한 내용이 문자열로 반환된다.</p>
+
+<p>Integer.parseInt() 메서드는 입력받은 문자열을 int타입으로 변환하여 할당시키는 역할을 한다.<br />
+nextInt() 메서드는 위와 같은 추가 연산 없이 입력받은 값을 바로 int형으로 변환시킬 수 있다.<br />
+하지만 연속적으로 값을 입력받기 까다로울 수 있으니 그럴 땐 문자열을 한번에 받아 형변환을 하는 방법을 선택할 수 있다.<br /><br /><br /></p>
+
+<hr />
+<p><br /><br />
+<img src="../../assets/img/BOJ/2588_1.png" alt="image" />
+<img src="../../assets/img/BOJ/2588_2.png" alt="image" />
+<img src="../../assets/img/BOJ/2588_3.png" alt="image" />
+<br /><br />
+두 수를 입력받아 나누기 연산을 통해 각 자릿수를 구했다.<br />
+그리고 곱하기를 통해 출력을 진행하였다.
+<br /><br /></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">num1</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="kt">int</span> <span class="n">one</span> <span class="o">=</span> <span class="n">num2</span><span class="o">%</span><span class="mi">10</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">ten</span> <span class="o">=</span> <span class="n">num2</span><span class="o">%</span><span class="mi">100</span><span class="o">/</span><span class="mi">10</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">hun</span> <span class="o">=</span> <span class="n">num2</span><span class="o">/</span><span class="mi">100</span><span class="o">;</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">num1</span><span class="o">*</span><span class="n">one</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">num1</span><span class="o">*</span><span class="n">ten</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">num1</span><span class="o">*</span><span class="n">hun</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">num1</span><span class="o">*</span><span class="n">num2</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+  </div>
+
+
+  
+  <div class="post_comment">
+
+    
+
+    
+
+
+  </div>
+  
+
+</div>
+
+
+    </main>
+
+  </div>
+
+  <footer class="footer">
+  <div>
+    &copy; 2023 suns.
+    Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>.
+    Get this theme
+    <a href="https://github.com/starry99/catbook" target="_blank">here</a>.
+  </div>
+</footer>
+
+  <!-- js from https://codepen.io/MrGrigri/pen/XQmWBv -->
+
+<script>
+// @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&dn=expat.txt Expat
+    const themePreference = () => {
+        const hasLocalStorage = localStorage.getItem('theme');
+        let supports = false;
+        let theme = undefined;
+
+        if (hasLocalStorage === 'light') {
+            theme = 'light';
+        }
+        if (hasLocalStorage === 'dark') {
+            theme = 'dark';
+        }
+
+        if (window.matchMedia(`(prefers_color: dark)`).matches) {
+            theme = hasLocalStorage ? hasLocalStorage : 'dark';
+            supports = true;
+        };
+        if (window.matchMedia(`(prefers_color: light)`).matches) {
+            theme = hasLocalStorage ? hasLocalStorage : 'light';
+            supports = true;
+        };
+        if (window.matchMedia(`(prefers_color: no-preference)`).matches) {
+            theme = hasLocalStorage ? hasLocalStorage : 'none';
+            supports = true;
+        };
+
+        return {
+            supports,
+            theme
+        };
+    }
+
+    document.addEventListener('DOMContentLoaded', e => {
+        console.clear();
+
+        const userThemePreference = themePreference();
+        const toggle = document.querySelector('[theme_toggle]');
+        const html = document.documentElement;
+
+        const setTheme = () => {
+            switch (userThemePreference.theme) {
+                case 'dark':
+                    toggle.checked = true;
+                    html.classList.add('dark');
+                    html.classList.remove('light');
+                    break;
+                case 'light':
+                    toggle.checked = false;
+                    html.classList.remove('dark');
+                    html.classList.add('light');
+                    break;
+            }
+        }
+        setTheme();
+        toggle.addEventListener('click', e => {
+            if (toggle.checked) {
+                html.classList.add('dark');
+                html.classList.remove('light');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            }
+        }, false);
+    }, false);
+// @license-end
+</script>
+
+</body>
+</html>

@@ -3,7 +3,7 @@ layout: post
 title: "[Java/자바] 오류의 종류와 예외 처리"
 categories: [JAVA]
 tag: [Java, Error, Exception, ExceptionHandling]
-date: 2023-01-30 17:15:00 +0300
+date: 
 ---
 
 # 오류
